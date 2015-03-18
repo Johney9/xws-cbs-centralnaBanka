@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.ftn.uns.ac.rs/xws/cbs/zahtev_za_izvod"
+    targetNamespace="http://www.ftn.uns.ac.rs/xws/cbs/zahtev_za_izvod"
+    elementFormDefault="qualified" xmlns:t="http://www.ftn.uns.ac.rs/xws/cbs/tipovi">
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/tipovi" schemaLocation="tipovi.xsd"/>
+    <xs:element name="zahtev_za_izvod">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="broj_racuna" type="t:TRacun"/>
+                <xs:element name="datum" type="xs:date"/>
+                <xs:element name="redni_broj_preseka">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:decimal">
+                            <xs:totalDigits value="2"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

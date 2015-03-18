@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.ftn.uns.ac.rs/xws/cbs/izvod"
+    targetNamespace="http://www.ftn.uns.ac.rs/xws/cbs/izvod" elementFormDefault="qualified"
+    xmlns:t="http://www.ftn.uns.ac.rs/xws/cbs/tipovi">
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/tipovi" schemaLocation="tipovi.xsd"/>
+    <xs:element name="izvod">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="zaglavlje" maxOccurs="1" minOccurs="1" type="IzvodZaglavlje"> </xs:element>
+                <xs:element maxOccurs="unbounded" name="stavke" minOccurs="1" type="IzvodStavka">
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="IzvodZaglavlje">
+        <xs:sequence>
+            <xs:element name="broj_racuna" type="t:TRacun"/>
+            <xs:element name="datum_naloga" type="xs:date"/>
+            <xs:element name="broj_preseka">
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="prethodno_stanje" type="t:TIznos"/>
+            <xs:element name="broj_promena_u_korist">
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="6"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="ukupno_u_korist" type="t:TIznos"/>
+            <xs:element name="broj_promena_na_teret">
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:totalDigits value="6"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="ukupno_na_teret" type="t:TIznos"/>
+            <xs:element name="novo_stanje" type="t:TIznos"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="IzvodStavka">
+        <xs:sequence>
+            <xs:element name="duznik_nalogodavac" type="t:TNaziv"/>
+            <xs:element name="svrha_placanja" type="t:TNaziv"/>
+            <xs:element name="primalac_poverilac" type="t:TNaziv"/>
+            <xs:element name="datum_naloga" type="xs:date"/>
+            <xs:element name="datum_valute" type="xs:date"/>
+            <xs:element name="racund_duznika" type="t:TRacun"/>
+            <xs:element name="model_zaduzenja" type="t:TModel"/>
+            <xs:element name="poziv_na_broj_zaduzenja" type="t:TPozivNaBroj"/>
+            <xs:element name="racun_poverioca" type="t:TRacun"/>
+            <xs:element name="model_odobrenja" type="t:TModel"/>
+            <xs:element name="poziv_na_broj_odobrenja" type="t:TPozivNaBroj"/>
+            <xs:element name="iznos" type="t:TIznos"/>
+            <xs:element name="smer">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

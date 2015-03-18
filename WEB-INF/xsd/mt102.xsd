@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.ftn.uns.ac.rs/xws/cbs/mt102"
+    targetNamespace="http://www.ftn.uns.ac.rs/xws/cbs/mt102" elementFormDefault="qualified"
+    xmlns:t="http://www.ftn.uns.ac.rs/xws/cbs/tipovi">
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/tipovi" schemaLocation="tipovi.xsd"/>
+    <xs:element name="mt102">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id_poruke" type="t:TID"/>
+                <xs:element name="swift_kod_banke_duznika" type="t:TSWIFT"/>
+                <xs:element name="obracunski_racun_banke_duznika" type="t:TRacun"/>
+                <xs:element name="swift_kod_banke_poverioca" type="t:TSWIFT"/>
+                <xs:element name="obracunski_racun_banke_poverioca" type="t:TRacun"/>
+                <xs:element name="ukupan_iznos" type="t:TIznos"/>
+                <xs:element name="sifra_valute" type="t:TSifraValute"/>
+                <xs:element name="datum_valute" type="xs:date"/>
+                <xs:element name="datum" type="xs:date"/>
+                <xs:element maxOccurs="unbounded" name="pojedinacni_nalozi"
+                    type="MT102PojedinacniNalog"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="MT102PojedinacniNalog">
+        <xs:sequence>
+            <xs:element name="id_naloga_za_placanje" type="t:TID"/>
+            <xs:element name="duznik_nalogodavac" type="t:TNaziv"/>
+            <xs:element name="svrha_placanja" type="t:TNaziv"/>
+            <xs:element name="primalac_poverilac" type="t:TNaziv"/>
+            <xs:element name="datum_naloga" type="xs:date"/>
+            <xs:element name="racun_duznika" type="t:TRacun"/>
+            <xs:element name="model_zaduzenja" type="t:TModel"/>
+            <xs:element name="poziv_na_broj_zaduzenja" type="t:TPozivNaBroj"/>
+            <xs:element name="racun_poverioca" type="t:TRacun"/>
+            <xs:element name="model_odobrenja" type="t:TModel"/>
+            <xs:element name="poziv_na_broj_odobrenja" type="t:TPozivNaBroj"/>
+            <xs:element name="iznos" type="t:TIznos"/>
+            <xs:element name="sifra_valute" type="t:TSifraValute"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

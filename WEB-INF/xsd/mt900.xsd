@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.ftn.uns.ac.rs/xws/cbs/mt900"
+    targetNamespace="http://www.ftn.uns.ac.rs/xws/cbs/mt900" elementFormDefault="qualified"
+    xmlns:t="http://www.ftn.uns.ac.rs/xws/cbs/tipovi">
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/tipovi" schemaLocation="tipovi.xsd"/>
+    <xs:element name="mt900">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id_poruke" type="t:TID"/>
+                <xs:element name="swift_kod_banke_duznika" type="t:TSWIFT"/>
+                <xs:element name="obracunski_racun_banke_duznika">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                            <xs:minLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="id_poruke_naloga" type="t:TID"/>
+                <xs:element name="datum_valute" type="xs:date"/>
+                <xs:element name="iznos" type="t:TIznos"/>
+                <xs:element name="sifra_valute" type="t:TSifraValute"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
