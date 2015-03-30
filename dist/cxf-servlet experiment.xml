@@ -25,11 +25,16 @@
 		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
 	<jaxws:endpoint 
-		id="centralna_banka" 
-		address="/CentralnaBanka"
-		implementor="rs.ac.uns.ftn.xws.cbs.centralna_banka.CentralnaBankaImpl"
-		wsdlLocation="WEB-INF/xml/CentralnaBanka.wsdl"/>
+		id="helloDoc" 
+		address="/HelloDocument"
+		implementor="yu.ac.ns.ftn.informatika.ws.hello.HelloDocumentImpl"
+		wsdlLocation="WEB-INF/xml/HelloDocument.wsdl"/>
 
+	<jaxws:endpoint 
+		id="address" 
+		address="/AddressBook"
+		implementor="yu.ac.ns.ftn.informatika.ws.address.AddressBookImpl"
+		wsdlLocation="WEB-INF/xml/AddressBook.wsdl"/>
 
 </beans>
   

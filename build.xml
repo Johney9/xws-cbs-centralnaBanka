@@ -5,12 +5,11 @@
 	
 	<property name="bin.dir" value="${basedir}/bin"/>
 	<property name="src.dir" value="${basedir}/src"/>
-	<property name="lib.dir" value="${model.dir}/lib"/>
+	<property name="lib.dir" value="${basedir}/lib"/>
 	<property name="dist.dir" value="${basedir}/dist"/>
 	<property name="gen.dir" value="${basedir}/gen"/>
 	<property name="webinf.dir" value="${basedir}/WEB-INF"/>
-	<property name="xsd.dir" value="${model.dir}/xml/xsd"/>
-	<property name="wsdl.dir" value="${model.dir}/xml/wsdl"/>
+	<property name="xml.dir" value="WEB-INF/xml"/>
 	
 	<target name="check-war-name" unless="war.name">
 		<fail>
@@ -91,34 +90,28 @@
             </java>
         </sequential>
     </macrodef>
-		
-	<target name="generate-code">
+			
+	<target name="generate-code" depends="copy-from-model">
 		<echo level="info" message="Generating code using wsdl2java..."/>
 		
-		<wsdl2java file="${wsdl.dir}/CentralnaBanka.wsdl"/>
+		<wsdl2java file="${xml.dir}/CentralnaBanka.wsdl"/>
 	   
 	</target>
 	
-	<target name="compile" depends="init">
+	<target name="compile" depends="init,copy-from-model">
 		<javac destdir="${bin.dir}" debug="on">
 			<classpath>
 				<fileset dir="${lib.dir}">
 					<include name="*.jar"/>
 				</fileset>
-				<fileset dir="${xsd.dir}">
-					<include name="*.xsd"/>
-				</fileset>
-				<fileset dir="${wsdl.dir}">
-					<include name="*.wsdl"/>
-				</fileset>
 			</classpath>
 			<src path="${src.dir}"/>
 		</javac>
-		<copy todir="${webinf.dir}/wsdl">
-			<fileset dir="${wsdl.dir}"/>
-		</copy>
-		<copy todir="${webinf.dir}/xsd">
-			<fileset dir="${xsd.dir}"/>
+	</target>
+	
+	<target name="copy-from-model">
+		<copy todir="${xml.dir}">
+			<fileset dir="${model.dir}/xml"/>
 		</copy>
 	</target>
 
@@ -140,8 +133,8 @@
 				<include name="spring-*.jar"/>
 			</lib>
 			<webinf dir="${webinf.dir}">
-				<include name="wsdl"/>
-				<include name="xsd"/>
+				<include name="xml/*.wsdl"/>
+				<include name="xml/*.xsd"/>
 				<include name="cxf-servlet.xml"/>
 			</webinf>
 		</war>
