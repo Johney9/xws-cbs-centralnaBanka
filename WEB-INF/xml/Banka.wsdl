@@ -5,7 +5,8 @@
     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
     xmlns:wsoap12="http://schemas.xmlsoap.org/wsdl/soap12/"
     xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
-    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ws="http://www.example.com/webservice"
 
@@ -21,15 +22,15 @@
     <!-- ^dodatni namespace-ovi -->
     <!-- importi -->
     <wsdl:types>
-        <xs:schema>
-            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/tipovi" schemaLocation="../xsd/tipovi.xsd"/>
-            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/zahtev_za_izvod" schemaLocation="../xsd/zahtev_za_izvod.xsd"/>
-            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/izvod" schemaLocation="../xsd/izvod.xsd"/>
-            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/mt102" schemaLocation="../xsd/mt102.xsd"/>
-            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/mt103" schemaLocation="../xsd/mt103.xsd"/>
-            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/mt900" schemaLocation="../xsd/mt900.xsd"/>
-            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/mt910" schemaLocation="../xsd/mt910.xsd"/>
-            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/nalog_za_placanje" schemaLocation="../xsd/nalog_za_placanje.xsd"/>
+        <xs:schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/tipovi" schemaLocation="tipovi.xsd"/>
+            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/zahtev_za_izvod" schemaLocation="zahtev_za_izvod.xsd"/>
+            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/izvod" schemaLocation="izvod.xsd"/>
+            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/mt102" schemaLocation="mt102.xsd"/>
+            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/mt103" schemaLocation="mt103.xsd"/>
+            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/mt900" schemaLocation="mt900.xsd"/>
+            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/mt910" schemaLocation="mt910.xsd"/>
+            <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/nalog_za_placanje" schemaLocation="nalog_za_placanje.xsd"/>
         </xs:schema>
     </wsdl:types>
     
@@ -77,7 +78,7 @@
     </wsdl:message>
     
     <!-- port -->
-    <wsdl:portType name="BankaPort">
+    <wsdl:portType name="Banka">
         <wsdl:operation name="primiMT102">
             <wsdl:input message="b:primiMT102Request"></wsdl:input>
         </wsdl:operation>
@@ -100,7 +101,7 @@
     </wsdl:portType>
     
     <!-- binding -->
-    <wsdl:binding name="BankaBinding" type="b:BankaPort">
+    <wsdl:binding name="BankaBinding" type="b:Banka">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="primiMT102">
             <soap:operation soapAction=""/>
@@ -160,8 +161,8 @@
     
     <!-- service -->
     <wsdl:service name="BankaService">
-        <wsdl:port name="BankaPort" binding="b:BankaBinding">
-            <soap:address location="http://localhost:8080/banka"/>
+        <wsdl:port name="Banka" binding="b:BankaBinding">
+            <soap:address location="http://localhost:8080/Banka"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>
