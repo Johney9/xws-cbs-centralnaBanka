@@ -38,11 +38,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link MT102PojedinacniNalog }
+     * Create an instance of {@link Mt102PojedinacniNalog }
      * 
      */
-    public MT102PojedinacniNalog createMT102PojedinacniNalog() {
-        return new MT102PojedinacniNalog();
+    public Mt102PojedinacniNalog createMT102PojedinacniNalog() {
+        return new Mt102PojedinacniNalog();
     }
 
 }

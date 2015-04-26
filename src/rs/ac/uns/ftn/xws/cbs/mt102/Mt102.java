@@ -78,7 +78,7 @@ public class Mt102 {
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar datum;
     @XmlElement(name = "pojedinacni_nalozi", required = true)
-    protected List<MT102PojedinacniNalog> pojedinacniNalozi;
+    protected List<Mt102PojedinacniNalog> pojedinacniNalozi;
 
     /**
      * Gets the value of the idPoruke property.
@@ -314,13 +314,13 @@ public class Mt102 {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link MT102PojedinacniNalog }
+     * {@link Mt102PojedinacniNalog }
      * 
      * 
      */
-    public List<MT102PojedinacniNalog> getPojedinacniNalozi() {
+    public List<Mt102PojedinacniNalog> getPojedinacniNalozi() {
         if (pojedinacniNalozi == null) {
-            pojedinacniNalozi = new ArrayList<MT102PojedinacniNalog>();
+            pojedinacniNalozi = new ArrayList<Mt102PojedinacniNalog>();
         }
         return this.pojedinacniNalozi;
     }
