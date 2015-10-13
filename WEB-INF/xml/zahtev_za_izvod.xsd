@@ -9,9 +9,9 @@
             <xs:sequence>
                 <xs:element name="broj_racuna" type="t:TRacun"/>
                 <xs:element name="datum" type="xs:date"/>
-                <xs:element name="redni_broj_preseka">
+                <xs:element name="redni_broj_preseka" form="qualified">
                     <xs:simpleType>
-                        <xs:restriction base="xs:decimal">
+                        <xs:restriction base="xs:positiveInteger">
                             <xs:totalDigits value="2"/>
                         </xs:restriction>
                     </xs:simpleType>

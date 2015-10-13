@@ -2,6 +2,9 @@
 
 	<property file="ant.properties" />
 	<property name="model.dir" value="../xws-model"/>
+	<property name="dataProcessor.dir" value="../xws-dataProcessor"/>
+	<property name="dbFacade.dir" value="../xws-dbFacade"/>
+	<property name="dbConnector.dir" value="../xws-dbConnector"/>	
 	
 	<property name="bin.dir" value="${basedir}/bin"/>
 	<property name="src.dir" value="${basedir}/src"/>
@@ -51,6 +54,81 @@
 		</fileset>
 	</path>
 	
+	<target name="build-jars" depends="build-dataProcessor-jar,build-dbFacade-jar,build-model-jar,build-dbConnector-jar">
+		<description>Build the required jars.</description>
+	</target>
+	
+	<target name="build-dataProcessor-jar">
+	   <jar destfile="${lib.dir}/xws-dataProcessor-1.6.jar">
+	   	<fileset dir="${dataProcessor.dir}/bin">
+		      <include name="**/*.class"/>
+		      <exclude name="test/,.empty"/>
+	    </fileset>
+		<fileset dir="${dataProcessor.dir}/src">
+	      <include name="**/*.java"/>
+	      <exclude name="test/,.empty"/>
+		</fileset>
+	   	<manifest></manifest>
+	   </jar>
+	</target>
+
+	<target name="build-dbFacade-jar">
+	   <jar destfile="${lib.dir}/xws-dbFacade-1.6.jar">
+	      <fileset dir="${dbFacade.dir}/bin">
+		      <include name="**/*.class"/>
+		      <exclude name="test/,.empty"/>
+		  </fileset>
+		<fileset dir="${dbFacade.dir}/src">
+	      <include name="**/*.java"/>
+	      <exclude name="test/,.empty"/>
+	 	</fileset>
+	   	<fileset dir="${dbFacade.dir}">
+	   		<include name="lib/**"/>
+	   	</fileset>
+	   	<manifest></manifest>
+	   </jar>
+	</target>
+	
+	<target name="build-dbConnector-jar">
+	   <jar destfile="${lib.dir}/xws-dbConnector-1.6.jar">
+	      <fileset dir="${dbConnector.dir}/bin">
+		      <include name="**/*.class"/>
+      		  <include name="**/*.properties"/>
+			  <include name="**/*.xml"/>
+			  <include name="**/*.xsd"/>
+		      <exclude name="test/,.empty"/>
+		  </fileset>
+		<fileset dir="${dbConnector.dir}/src">
+	      <include name="**/*.java"/>
+		  <include name="**/*.properties"/>
+		  <include name="**/*.xml"/>
+		  <include name="**/*.xsd"/>	      
+		  <exclude name="test/,.empty"/>
+	 	</fileset>
+	   	<fileset dir="${dbConnector.dir}">
+	   		<include name="lib/**"/>
+	   	</fileset>
+	   	<manifest></manifest>
+	   </jar>
+	</target>
+	
+	<target name="build-model-jar">
+	   <jar destfile="${lib.dir}/xws-model-1.6.jar">
+	      <fileset dir="${model.dir}/bin">
+		      <include name="**/*.class"/>
+		      <exclude name="test/,.empty"/>
+	      </fileset>
+	   	<fileset dir="${model.dir}/src">
+	      <include name="**/*.java"/>
+	      <exclude name="test/,.empty"/>
+        </fileset>
+	   	  <fileset dir="${model.dir}">
+		    <include name="xml/**"/>
+		  </fileset>
+	   	<manifest></manifest>	
+	   </jar>
+	</target>
+	
 	<macrodef name="wsdl2java">
         <attribute name="src.dest.dir" default="${gen.dir}"/>
         <attribute name="file"/>
@@ -94,7 +172,7 @@
 	<target name="generate-code" depends="copy-from-model">
 		<echo level="info" message="Generating code using wsdl2java..."/>
 		
-		<wsdl2java file="${xml.dir}/CentralnaBanka.wsdl"/>
+		<wsdl2java file="${xml.dir}/XWSCentralnaBanka.wsdl"/>
 	   
 	</target>
 	
@@ -109,7 +187,7 @@
 		</javac>
 	</target>
 	
-	<target name="copy-from-model">
+	<target name="copy-from-model" depends="build-jars">
 		<copy todir="${xml.dir}">
 			<fileset dir="${model.dir}/xml"/>
 		</copy>
@@ -130,13 +208,25 @@
 				<include name="**/*.class"/>
 			</classes>
 			<lib dir="${lib.dir}">
+				<include name="*.jar"/>
+				<!--
 				<include name="spring-*.jar"/>
+				<include name="commons-io-1.3.2.jar"/>
+				<include name="xws-model-1.6.jar"/>
+				<include name="xws-dataProcessor-1.6.jar"/>
+				<include name="xws-dbFacade-1.6.jar"/>
+				<include name="xws-dbConnector-1.6.jar"/>
+				-->
 			</lib>
 			<webinf dir="${webinf.dir}">
 				<include name="xml/*.wsdl"/>
 				<include name="xml/*.xsd"/>
 				<include name="cxf-servlet.xml"/>
 			</webinf>
+			<classes dir="${basedir}">
+				<include name="ant.properties"/>
+			</classes>
+			
 		</war>
 	</target>
 

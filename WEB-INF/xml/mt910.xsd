@@ -8,8 +8,8 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="id_poruke" type="t:TID"/>
-                <xs:element name="swift_kod_banke_duznika" type="t:TSWIFT"/>
-                <xs:element name="obracunski_racun_banke_duznika">
+                <xs:element name="swift_kod_banke_poverioca" type="t:TSWIFT"/>
+                <xs:element name="obracunski_racun_banke_poverioca">
                     <xs:simpleType>
                         <xs:restriction base="xs:string">
                             <xs:maxLength value="20"/>

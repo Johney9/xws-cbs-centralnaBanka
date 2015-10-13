@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.ftn.uns.ac.rs/xws/cbs/banka_app_mapper"
+    targetNamespace="http://www.ftn.uns.ac.rs/xws/cbs/banka_app_mapper"
+    elementFormDefault="qualified" xmlns:t="http://www.ftn.uns.ac.rs/xws/cbs/tipovi">
+
+    <xs:import namespace="http://www.ftn.uns.ac.rs/xws/cbs/tipovi" schemaLocation="tipovi.xsd"/>
+    <xs:element name="banka_app_mapper">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id_swift_banke" form="qualified" maxOccurs="1" minOccurs="1"
+                    type="t:TSWIFT"> </xs:element>
+                <xs:element name="naziv_aplikacije" form="qualified" maxOccurs="1" minOccurs="1" type="xs:Name"/>
+            	<xs:element name="broj_racuna" form="qualified" maxOccurs="1" minOccurs="1" type="t:TRacun"/>
+            	<xs:element name="ip_address" form="qualified" maxOccurs="1" minOccurs="1" type="t:TIP"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
