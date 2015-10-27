@@ -41,7 +41,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="datum_racuna"/>
+            <xs:element name="datum_racuna" type="xs:date"/>
             <xs:element name="vrednost_robe" type="t:TIznos"/>
             <xs:element name="vrednost_usluga" type="t:TIznos"/>
             <xs:element name="ukupno_roba_i_usluge" type="t:TIznos"/>
@@ -55,9 +55,9 @@
     </xs:complexType>
     <xs:complexType name="FakturaStavka">
         <xs:sequence>
-            <xs:element name="redni_broj">
+            <xs:element name="redni_broj" minOccurs="1">
                 <xs:simpleType>
-                    <xs:restriction base="xs:decimal">
+                    <xs:restriction base="xs:positiveInteger">
                         <xs:fractionDigits value="0"/>
                         <xs:totalDigits value="3"/>
                     </xs:restriction>
@@ -72,10 +72,7 @@
             </xs:element>
             <xs:element name="kolicina">
                 <xs:simpleType>
-                    <xs:restriction base="xs:decimal">
-                        <xs:totalDigits value="10"/>
-                        <xs:fractionDigits value="2"/>
-                    </xs:restriction>
+                    <xs:restriction base="xs:decimal"> </xs:restriction>
                 </xs:simpleType>
             </xs:element>
             <xs:element name="jedinica_mere">

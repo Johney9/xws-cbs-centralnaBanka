@@ -17,11 +17,11 @@
                 <xs:element name="datum_valute" type="xs:date"/>
                 <xs:element name="datum" type="xs:date"/>
                 <xs:element maxOccurs="unbounded" name="pojedinacni_nalozi"
-                    type="MT102PojedinacniNalog"/>
+                    type="Mt102PojedinacniNalog"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:complexType name="MT102PojedinacniNalog">
+    <xs:complexType name="Mt102PojedinacniNalog">
         <xs:sequence>
             <xs:element name="id_naloga_za_placanje" type="t:TID"/>
             <xs:element name="duznik_nalogodavac" type="t:TNaziv"/>

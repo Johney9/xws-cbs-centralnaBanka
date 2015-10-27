@@ -19,7 +19,7 @@
             <xs:element name="datum_naloga" type="xs:date"/>
             <xs:element name="broj_preseka">
                 <xs:simpleType>
-                    <xs:restriction base="xs:decimal">
+                    <xs:restriction base="xs:positiveInteger">
                         <xs:totalDigits value="2"/>
                     </xs:restriction>
                 </xs:simpleType>
@@ -27,7 +27,7 @@
             <xs:element name="prethodno_stanje" type="t:TIznos"/>
             <xs:element name="broj_promena_u_korist">
                 <xs:simpleType>
-                    <xs:restriction base="xs:decimal">
+                    <xs:restriction base="xs:nonNegativeInteger">
                         <xs:totalDigits value="6"/>
                     </xs:restriction>
                 </xs:simpleType>
@@ -35,7 +35,7 @@
             <xs:element name="ukupno_u_korist" type="t:TIznos"/>
             <xs:element name="broj_promena_na_teret">
                 <xs:simpleType>
-                    <xs:restriction base="xs:decimal">
+                    <xs:restriction base="xs:nonNegativeInteger">
                         <xs:totalDigits value="6"/>
                     </xs:restriction>
                 </xs:simpleType>

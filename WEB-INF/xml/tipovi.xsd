@@ -53,4 +53,9 @@
             <xs:maxLength value="8"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="TIP">
+	    <xs:restriction base="xs:string">
+	    	<xs:pattern value="([0-9]*\.){3}[0-9]*" />
+	    </xs:restriction>
+ 	</xs:simpleType>
 </xs:schema>
